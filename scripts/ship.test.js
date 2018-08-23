@@ -1,8 +1,22 @@
-const ship = require('./ship');
+const Ship = require('./ship');
 
 test("it creates a default ship object", () => {
-  myShip = ship();
-  expect(myShip.length).toBe(0);
+  myShip = Ship();
+  expect(myShip.length).toBe(3);
   expect(myShip.sunk).toBe(false);
   expect(myShip.hits).toEqual([]);
+});
+
+test("it creates a ship with the correct length given a length parameter", () => {
+  myShip = Ship(4);
+  expect(myShip.length).toBe(4);
+  expect(myShip.sunk).toBe(false);
+  expect(myShip.hits).toEqual([]);
+});
+
+test("it assigns the default ship length when the specified ship length is less than three", () => {
+ myShip = Ship(-2);
+ expect(myShip.length).toBe(3);
+ myShip = Ship(2.5);
+ expect(myShip.length).toBe(3);
 });

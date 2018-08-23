@@ -1,4 +1,4 @@
-const ship = () => {
+const Ship = () => {
   const length = 0;
   let sunk = false;
   let hits = [];
