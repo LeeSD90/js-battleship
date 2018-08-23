@@ -26,3 +26,11 @@ test("it assigns the default ship length when the specified ship length is less 
  myShip = Ship("hello");
  expect(myShip.length).toBe(2);
 });
+
+test("it correctly marks a position as hit when given a valid number", () => {
+  myShip = Ship(5);
+  myShip.hit(5);
+  expect(myShip.hits).toEqual([5])
+  myShip.hit(2);
+  expect(myShip.hits).toEqual([5, 2]);
+});
