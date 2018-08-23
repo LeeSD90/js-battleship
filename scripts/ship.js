@@ -4,6 +4,15 @@ const Ship = (l = 2) => {
   ship.sunk = false;
   ship.hits = [];
 
+  ship.hit = (p) => {
+    if(Number.isInteger(p)
+        && p >= 1
+        && p <= ship.length
+        && !ship.hits.includes(p)){
+          ship.hits.push(p);
+      }
+  }
+  
   return ship;
 }
 
