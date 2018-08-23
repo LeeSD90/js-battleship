@@ -43,3 +43,12 @@ test("it will not mark the same spot as hit twice, or hit a spot that does not e
   myShip.hit(5);
   expect(myShip.hits).toEqual([3]);
 });
+
+test("correctly calculates if a ship has been sunk", () => {
+  myShip = Ship(3);
+  myShip.hit(1);
+  myShip.hit(2);
+  expect(myShip.isSunk()).toBe(false);
+  myShip.hit(3);
+  expect(myShip.isSunk()).toBe(true);
+});
