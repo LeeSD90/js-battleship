@@ -1,9 +1,10 @@
 const Ship = () => {
-  const length = 0;
-  let sunk = false;
-  let hits = [];
+  const ship = {};
+  ship.length = 3;
+  ship.sunk = false;
+  ship.hits = [];
 
-  return { length, sunk, hits }
+  return ship;
 }
 
-module.exports = ship;
+module.exports = Ship;
