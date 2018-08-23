@@ -12,7 +12,14 @@ const Ship = (l = 2) => {
           ship.hits.push(p);
       }
   }
-  
+
+  ship.isSunk = () => {
+    for(i = 1; i <= ship.length; i++){
+      if(!ship.hits.includes(i)) return false;
+    }
+    return true;
+  }
+
   return ship;
 }
 
