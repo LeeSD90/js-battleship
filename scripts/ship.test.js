@@ -34,3 +34,12 @@ test("it correctly marks a position as hit when given a valid number", () => {
   myShip.hit(2);
   expect(myShip.hits).toEqual([5, 2]);
 });
+
+test("it will not mark the same spot as hit twice, or hit a spot that does not exist on the ship", () => {
+  myShip = Ship(3);
+  myShip.hit(3);
+  myShip.hit(3);
+  expect(myShip.hits).toEqual([3]);
+  myShip.hit(5);
+  expect(myShip.hits).toEqual([3]);
+});
