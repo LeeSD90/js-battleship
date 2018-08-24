@@ -28,3 +28,20 @@ test('it correctly places ships horizontally at the specified coordinates', () =
   expect(gb.board[6][2]).toMatchObject({ ship: ship2, index: 3});
   expect(gb.board[7][2]).toMatchObject({ ship: ship2, index: 4});
 });
+
+test('it correctly places ships vertically at the specified coordinates', () => {
+  gb = GameBoard();
+  ship = { length: 3 };
+  gb.placeShip(ship, 0, 0, "v");
+  expect(gb.board[0][0]).toMatchObject({ ship: ship, index: 0});
+  expect(gb.board[0][1]).toMatchObject({ ship: ship, index: 1});
+  expect(gb.board[0][2]).toMatchObject({ ship: ship, index: 2});
+
+  ship2 = { length: 5 };
+  gb.placeShip(ship2, 3, 2, "v");
+  expect(gb.board[3][2]).toMatchObject({ ship: ship2, index: 0});
+  expect(gb.board[3][3]).toMatchObject({ ship: ship2, index: 1});
+  expect(gb.board[3][4]).toMatchObject({ ship: ship2, index: 2});
+  expect(gb.board[3][5]).toMatchObject({ ship: ship2, index: 3});
+  expect(gb.board[3][6]).toMatchObject({ ship: ship2, index: 4});
+});
