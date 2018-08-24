@@ -16,7 +16,7 @@ const GameBoard = () => {
       }
     }
     catch(e){
-      throw new Error("Specified position is outside of the board");
+      throw new Error("Coordinates are already occupied or are outside of the gameboard");
     }
   }
 
@@ -30,6 +30,19 @@ const GameBoard = () => {
       gameboard.missed.push([x,y]);
       return false;
     }
+  }
+
+  gameboard.allShipsSunk = () => {
+    let result = true;
+    gameboard.board.forEach(row => {
+      row.forEach(c => {
+        if(c.ship && !c.ship.isSunk()) {
+          result = false;
+          return;
+        }
+      })
+    })
+    return result;
   }
 
   return gameboard;
