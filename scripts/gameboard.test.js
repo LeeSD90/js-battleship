@@ -74,3 +74,25 @@ test('it correctly determines a ship was hit when calculating an attack', () => 
   expect(gb.receiveAttack(1,0)).toBe(true);
 });
 
+test('it should correctly determine if all ships have been sunk', () => {
+  gb = GameBoard();
+  ship = { length: 3, hit: (x) => { return true; }, isSunk: () => { return true; } };
+  gb.placeShip(ship, 0, 0, "h");
+  ship2 = { length: 5, hit: (x) => { return true; }, isSunk: () => { return true; } };
+  gb.placeShip(ship2, 3, 2, "h");
+  ship3 = { length: 3, hit: (x) => { return true; }, isSunk: () => { return true; }  };
+  gb.placeShip(ship, 5, 3, "v");
+  gb.receiveAttack(0,0);
+  gb.receiveAttack(1,0);
+  gb.receiveAttack(2,0);
+  gb.receiveAttack(3,2);
+  gb.receiveAttack(4,2);
+  gb.receiveAttack(5,2);
+  gb.receiveAttack(6,2);
+  gb.receiveAttack(7,2);
+  gb.receiveAttack(5,3);
+  gb.receiveAttack(5,4);
+  gb.receiveAttack(5,5);
+  expect(gb.allShipsSunk()).toBe(true);
+});
+
