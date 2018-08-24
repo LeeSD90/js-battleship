@@ -58,3 +58,11 @@ test('it correctly determines a ship was not hit when calculating an attack', ()
   gb.placeShip(ship, 0, 0, "h");
   expect(gb.receiveAttack(0,1)).toBe(false);
 });
+
+test('it correctly determines a ship was hit when calculating an attack', () => {
+  gb = GameBoard();
+  ship = { length: 3, hit: (x) => { return true; } };
+  gb.placeShip(ship, 0, 0, "h");
+  expect(gb.receiveAttack(1,0)).toBe(true);
+});
+
