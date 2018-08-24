@@ -1,6 +1,7 @@
 const GameBoard = () => {
   const gameboard = {};
-  gameboard.board = []
+  gameboard.board = [];
+  gameboard.missed = [];
 
   for(i = 0; i < 10; i++){
     gameboard.board.push(new Array(10).fill(0));
@@ -26,6 +27,7 @@ const GameBoard = () => {
       }
     }
     else{
+      gameboard.missed.push([x,y]);
       return false;
     }
   }
