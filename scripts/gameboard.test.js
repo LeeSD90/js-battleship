@@ -45,3 +45,9 @@ test('it correctly places ships vertically at the specified coordinates', () => 
   expect(gb.board[3][5]).toMatchObject({ ship: ship2, index: 3});
   expect(gb.board[3][6]).toMatchObject({ ship: ship2, index: 4});
 });
+
+test('it will not place a ship off of the board', () => {
+  gb = GameBoard();
+  ship = { length: 3 };
+  expect(() => { gb.placeShip(ship, 9, 1, "h") }).toThrowError();
+});
