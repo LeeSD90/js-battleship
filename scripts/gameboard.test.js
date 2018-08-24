@@ -11,3 +11,20 @@ test('it creates a default board object with a 10x10 grid', () => {
   expect(gb.board[9][10]).toBeUndefined();
   expect(gb.board[0][-1]).toBeUndefined();
 });
+
+test('it correctly places ships horizontally at the specified coordinates', () => {
+  gb = GameBoard();
+  ship = { length: 3 };
+  gb.placeShip(ship, 0, 0, "h");
+  expect(gb.board[0][0]).toMatchObject({ ship: ship, index: 0});
+  expect(gb.board[1][0]).toMatchObject({ ship: ship, index: 1});
+  expect(gb.board[2][0]).toMatchObject({ ship: ship, index: 2});
+
+  ship2 = { length: 5 };
+  gb.placeShip(ship2, 3, 2, "h");
+  expect(gb.board[3][2]).toMatchObject({ ship: ship2, index: 0});
+  expect(gb.board[4][2]).toMatchObject({ ship: ship2, index: 1});
+  expect(gb.board[5][2]).toMatchObject({ ship: ship2, index: 2});
+  expect(gb.board[6][2]).toMatchObject({ ship: ship2, index: 3});
+  expect(gb.board[7][2]).toMatchObject({ ship: ship2, index: 4});
+});
