@@ -16,3 +16,15 @@ test('it correctly assigns a gameboard to the player', () => {
   p.setGameboard(g);
   expect(p.gameboard).not.toBeUndefined();
 });
+
+test('it correctly assigns an opposition gameboard', () => {
+  p = Player("p1");
+  p2 = Player("p2");
+  g = { board: [] };
+  g2 = { board: [] };
+  p.setGameboard(g);
+  p2.setGameboard(g2);
+  p.setOpposition(p2);
+  expect(p.opposition.gameboard).not.toBeUndefined();
+  expect(p2.gameboard).toBe(p.opposition.gameboard);
+});
