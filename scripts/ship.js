@@ -10,7 +10,9 @@ const Ship = (l = 2) => {
         && p <= ship.length
         && !ship.hits.includes(p)){
           ship.hits.push(p);
+          return true;
       }
+    return false;
   }
 
   ship.isSunk = () => {

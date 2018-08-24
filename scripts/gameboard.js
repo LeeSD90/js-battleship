@@ -19,6 +19,17 @@ const GameBoard = () => {
     }
   }
 
+  gameboard.receiveAttack = (x, y) => {
+    if(gameboard.board[x][y] != 0){
+      if(gameboard.board[x][y].ship.hit(gameboard.board[x][y].index)){
+        return true;
+      }
+    }
+    else{
+      return false;
+    }
+  }
+
   return gameboard;
 }
 
