@@ -1,3 +1,5 @@
+const Ship = require('./ship');
+
 const GameBoard = () => {
   const gameboard = {};
   gameboard.board = [];
@@ -5,6 +7,24 @@ const GameBoard = () => {
 
   for(i = 0; i < 10; i++){
     gameboard.board.push(new Array(10).fill(0));
+  }
+
+  gameboard.setRandomShips = () => {
+    for(let i = 3; i <= 5; i++){
+      let running = true;
+      while(running){
+        try{
+          let ship = Ship(i);
+          let x = Math.floor(Math.random() * 10);
+          let y = Math.floor(Math.random() * 10);
+          let o = Math.floor(((Math.random() * 2) + 1)) == 1 ? "h" : "v";
+          gameboard.placeShip(ship, x, y, o);
+          running = false;
+        }
+        catch(e){
+        }
+      }
+    }
   }
 
   gameboard.placeShip = (ship, row, col, o) => {
