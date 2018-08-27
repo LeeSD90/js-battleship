@@ -8,11 +8,17 @@ const GameBoard = () => {
   }
 
   gameboard.placeShip = (ship, x, y, o) => {
+    let countX = x;
+    let countY = y;
+
     try{
-      gameboard.board[x][y] = { ship: ship, index: 0 };
-      for(i = 1; i < ship.length; i++){
-        o === "h" ? x++ : y++;
+      for(i = 0; i < ship.length; i++){
+        isOccupied(countX, countY);
+        o === "h" ? countX++ : countY++;
+      }
+      for(i = 0; i < ship.length; i++){
         gameboard.board[x][y] = { ship: ship, index: i };
+        o === "h" ? x++ : y++;
       }
     }
     catch(e){
@@ -44,6 +50,10 @@ const GameBoard = () => {
     })
     return result;
   }
+
+function isOccupied(x, y){
+  if (gameboard.board[x][y] != 0) { throw "Cell is occupied!" }
+}
 
   return gameboard;
 }
