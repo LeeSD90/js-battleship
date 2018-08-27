@@ -52,6 +52,14 @@ test('it will not place a ship off of the board', () => {
   expect(() => { gb.placeShip(ship, 9, 1, "h") }).toThrowError();
 });
 
+test('it will not place a ship at the same location as another ship', () => {
+  gb = GameBoard();
+  ship = { length: 3 };
+  ship2 = { length: 3 };
+  gb.placeShip(ship2, 1, 1, "h");
+  expect(() => { gb.placeShip(ship, 3, 1, "v") }).toThrowError();
+});
+
 test('it correctly determines a ship was not hit when calculating an attack', () => {
   gb = GameBoard();
   ship = { length: 3 };
