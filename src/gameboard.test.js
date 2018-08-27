@@ -17,28 +17,11 @@ test('it correctly places ships horizontally at the specified coordinates', () =
   ship = { length: 3 };
   gb.placeShip(ship, 0, 0, "h");
   expect(gb.board[0][0]).toMatchObject({ ship: ship, index: 0});
-  expect(gb.board[1][0]).toMatchObject({ ship: ship, index: 1});
-  expect(gb.board[2][0]).toMatchObject({ ship: ship, index: 2});
-
-  ship2 = { length: 5 };
-  gb.placeShip(ship2, 3, 2, "h");
-  expect(gb.board[3][2]).toMatchObject({ ship: ship2, index: 0});
-  expect(gb.board[4][2]).toMatchObject({ ship: ship2, index: 1});
-  expect(gb.board[5][2]).toMatchObject({ ship: ship2, index: 2});
-  expect(gb.board[6][2]).toMatchObject({ ship: ship2, index: 3});
-  expect(gb.board[7][2]).toMatchObject({ ship: ship2, index: 4});
-});
-
-test('it correctly places ships vertically at the specified coordinates', () => {
-  gb = GameBoard();
-  ship = { length: 3 };
-  gb.placeShip(ship, 0, 0, "v");
-  expect(gb.board[0][0]).toMatchObject({ ship: ship, index: 0});
   expect(gb.board[0][1]).toMatchObject({ ship: ship, index: 1});
   expect(gb.board[0][2]).toMatchObject({ ship: ship, index: 2});
 
   ship2 = { length: 5 };
-  gb.placeShip(ship2, 3, 2, "v");
+  gb.placeShip(ship2, 3, 2, "h");
   expect(gb.board[3][2]).toMatchObject({ ship: ship2, index: 0});
   expect(gb.board[3][3]).toMatchObject({ ship: ship2, index: 1});
   expect(gb.board[3][4]).toMatchObject({ ship: ship2, index: 2});
@@ -46,10 +29,27 @@ test('it correctly places ships vertically at the specified coordinates', () => 
   expect(gb.board[3][6]).toMatchObject({ ship: ship2, index: 4});
 });
 
+test('it correctly places ships vertically at the specified coordinates', () => {
+  gb = GameBoard();
+  ship = { length: 3 };
+  gb.placeShip(ship, 0, 0, "v");
+  expect(gb.board[0][0]).toMatchObject({ ship: ship, index: 0});
+  expect(gb.board[1][0]).toMatchObject({ ship: ship, index: 1});
+  expect(gb.board[2][0]).toMatchObject({ ship: ship, index: 2});
+
+  ship2 = { length: 5 };
+  gb.placeShip(ship2, 3, 2, "v");
+  expect(gb.board[3][2]).toMatchObject({ ship: ship2, index: 0});
+  expect(gb.board[4][2]).toMatchObject({ ship: ship2, index: 1});
+  expect(gb.board[5][2]).toMatchObject({ ship: ship2, index: 2});
+  expect(gb.board[6][2]).toMatchObject({ ship: ship2, index: 3});
+  expect(gb.board[7][2]).toMatchObject({ ship: ship2, index: 4});
+});
+
 test('it will not place a ship off of the board', () => {
   gb = GameBoard();
   ship = { length: 3 };
-  expect(() => { gb.placeShip(ship, 9, 1, "h") }).toThrowError();
+  expect(() => { gb.placeShip(ship, 1, 9, "h") }).toThrowError();
 });
 
 test('it will not place a ship at the same location as another ship', () => {
@@ -57,29 +57,29 @@ test('it will not place a ship at the same location as another ship', () => {
   ship = { length: 3 };
   ship2 = { length: 3 };
   gb.placeShip(ship2, 1, 1, "h");
-  expect(() => { gb.placeShip(ship, 3, 1, "v") }).toThrowError();
+  expect(() => { gb.placeShip(ship, 1, 3, "v") }).toThrowError();
 });
 
 test('it correctly determines a ship was not hit when calculating an attack', () => {
   gb = GameBoard();
   ship = { length: 3 };
-  gb.placeShip(ship, 0, 0, "h");
-  expect(gb.receiveAttack(0,1)).toBe(false);
+  gb.placeShip(ship, 5, 5, "h");
+  expect(gb.receiveAttack(7,5)).toBe(false);
 });
 
 test('it correctly determines a ship was not hit when calculating an attack, and records the missed shot', () => {
   gb = GameBoard();
   ship = { length: 3 };
-  gb.placeShip(ship, 0, 0, "h");
-  expect(gb.receiveAttack(0,1)).toBe(false);
-  expect(gb.missed).toContainEqual([0,1]);
+  gb.placeShip(ship, 5, 5, "h");
+  expect(gb.receiveAttack(7,5)).toBe(false);
+  expect(gb.missed).toContainEqual([7,5]);
 });
 
 test('it correctly determines a ship was hit when calculating an attack', () => {
   gb = GameBoard();
   ship = { length: 3, hit: (x) => { return true; } };
-  gb.placeShip(ship, 0, 0, "h");
-  expect(gb.receiveAttack(1,0)).toBe(true);
+  gb.placeShip(ship, 5, 5, "h");
+  expect(gb.receiveAttack(5,7)).toBe(true);
 });
 
 test('it should correctly determine if all ships have been sunk', () => {
