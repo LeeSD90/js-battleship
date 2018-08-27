@@ -7,18 +7,18 @@ const GameBoard = () => {
     gameboard.board.push(new Array(10).fill(0));
   }
 
-  gameboard.placeShip = (ship, x, y, o) => {
-    let countX = x;
-    let countY = y;
+  gameboard.placeShip = (ship, row, col, o) => {
+    let countRow = row;
+    let countCol = col;
 
     try{
       for(i = 0; i < ship.length; i++){
-        isOccupied(countX, countY);
-        o === "h" ? countX++ : countY++;
+        isOccupied(countRow, countCol);
+        o === "h" ? countRow++ : countCol++;
       }
       for(i = 0; i < ship.length; i++){
-        gameboard.board[x][y] = { ship: ship, index: i };
-        o === "h" ? x++ : y++;
+        gameboard.board[row][col] = { ship: ship, index: i };
+        o === "h" ? row++ : col++;
       }
     }
     catch(e){
