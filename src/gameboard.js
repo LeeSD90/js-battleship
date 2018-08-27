@@ -14,11 +14,11 @@ const GameBoard = () => {
     try{
       for(i = 0; i < ship.length; i++){
         isOccupied(countRow, countCol);
-        o === "h" ? countRow++ : countCol++;
+        o === "h" ? countCol++ : countRow++;
       }
       for(i = 0; i < ship.length; i++){
         gameboard.board[row][col] = { ship: ship, index: i };
-        o === "h" ? row++ : col++;
+        o === "h" ? col++ : row++;
       }
     }
     catch(e){
