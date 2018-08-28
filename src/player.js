@@ -10,6 +10,11 @@ const Player = (n = "Player") => {
     player.opposition = p;
   }
 
+  player.renderBoards = () => {
+    let boards = player.gameboard.render(false) + player.opposition.gameboard.render();
+    return boards;
+  }
+
   return player;
 }
 

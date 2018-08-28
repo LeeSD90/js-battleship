@@ -3,9 +3,16 @@ import './css/style.css';
 const Player =  require('./player');
 const Gameboard = require('./gameboard');
 
+let player1;
+let player2;
+
+function render(){
+  document.getElementById("js-battleship").innerHTML = player1.renderBoards();
+}
+
 const newGame = () => {
-  let player1 = Player("p1");
-  let player2 = Player("p2");
+  player1 = Player("p1");
+  player2 = Player("Computer");
   let gb = Gameboard();
   let gb2 = Gameboard();
 
@@ -15,8 +22,10 @@ const newGame = () => {
   player1.setGameboard(gb);
   player2.setGameboard(gb2);
 
-  console.log(player1.gameboard);
-  console.log(player2.gameboard);
+  player1.setOpposition(player2);
+  player2.setOpposition(player1);
+
+  render();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
