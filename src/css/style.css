@@ -8,7 +8,7 @@
   height: 50px;
 }
 
-.col {
+.cell {
   display:inline-block;
   background-color: grey;
   width: 50px;
