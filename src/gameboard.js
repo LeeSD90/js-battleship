@@ -10,7 +10,8 @@ const GameBoard = () => {
   }
 
   gameboard.setRandomShips = () => {
-    for(let i = 3; i <= 5; i++){
+    let threePlaced = false;
+    for(let i = 2; i < 6; i++){
       let running = true;
       while(running){
         try{
@@ -19,7 +20,8 @@ const GameBoard = () => {
           let y = Math.floor(Math.random() * 10);
           let o = Math.floor(((Math.random() * 2) + 1)) == 1 ? "h" : "v";
           gameboard.placeShip(ship, x, y, o);
-          running = false;
+          if(i === 3 && !threePlaced){ threePlaced = true; }
+          else running = false;
         }
         catch(e){
         }
@@ -33,7 +35,7 @@ const GameBoard = () => {
 
     try{
       for(i = 0; i < ship.length; i++){
-        isOccupied(countRow, countCol);
+        if(isOccupied(countRow, countCol)){ throw "Cell is occupied!" };
         o === "h" ? countCol++ : countRow++;
       }
       for(i = 0; i < ship.length; i++){
@@ -71,9 +73,11 @@ const GameBoard = () => {
     return result;
   }
 
-function isOccupied(x, y){
-  if (gameboard.board[x][y] != 0) { throw "Cell is occupied!" }
-}
+
+
+  function isOccupied(x, y){
+    if (gameboard.board[x][y] != 0) { return true; } else return false;
+  }
 
   return gameboard;
 }
