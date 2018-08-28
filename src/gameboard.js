@@ -73,7 +73,36 @@ const GameBoard = () => {
     return result;
   }
 
+  gameboard.render = (hidden = true) => {
+    let container = document.createElement('div');
+    let b = document.createElement('div');
+    b.className = "board";
 
+    gameboard.board.forEach((row, i) => {
+      let r = document.createElement('div');
+      r.className = "row";
+      row.forEach((col, j) => {
+        let c = document.createElement('div');
+        c.className = "col";
+
+        if(hidden){
+          if(isMissed(i, j)){ c.classList.add("missed-shot"); }
+         }
+        else { 
+          if(isOccupied(i, j)){ c.classList.add("ship-present"); } 
+        }
+
+        r.appendChild(c);
+      })
+      b.appendChild(r);
+    })
+    container.appendChild(b);
+    return container.innerHTML;
+  }
+
+  function isMissed(x, y){
+    return gameboard.missed.includes([x,y]);
+  }
 
   function isOccupied(x, y){
     if (gameboard.board[x][y] != 0) { return true; } else return false;
