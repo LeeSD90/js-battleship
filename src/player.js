@@ -10,6 +10,10 @@ const Player = (n = "Player") => {
     player.opposition = p;
   }
 
+  player.playRound = () => {
+    return true;
+  }
+
   return player;
 }
 
