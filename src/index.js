@@ -24,17 +24,27 @@ const newGame = () => {
   player2.setOpposition(player1);
 
   update();
-  setListeners();
 }
 
 const update = () => {
   render(player1, player2);
+  setListeners();
 }
 
 const play = () => {
-  let playing = true;
+  let playersTurn = true;
+  let playing = false;
+
   while(playing){
-    playing = false;
+    if(playersTurn){
+      
+    }
+    else{
+
+      player2.playRound();
+
+    }
+    if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { playing = false; }
   }
 }
 
