@@ -24,16 +24,29 @@ const newGame = () => {
   player2.setOpposition(player1);
 
   update();
+  setListeners();
 }
 
 const update = () => {
-  document.getElementById("js-battleship").innerHTML = render(player1, player2);
+  render(player1, player2);
 }
 
 const play = () => {
   let playing = true;
   while(playing){
     playing = false;
+  }
+}
+
+function setListeners(){
+  let opponent = document.getElementById('opponent');
+  let cells = opponent.getElementsByClassName('cell');
+  for(let i = 0; i < cells.length; i++){
+    cells[i].onclick = () => {
+      console.log("click");
+      player2.gameboard.receiveAttack(cells[i].getAttribute("x"), cells[i].getAttribute("y"));
+      update();
+    }
   }
 }
 

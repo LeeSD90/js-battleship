@@ -4,6 +4,7 @@ const GameBoard = () => {
   const gameboard = {};
   gameboard.board = [];
   gameboard.missed = [];
+  gameboard.hit = [];
 
   for(i = 0; i < 10; i++){
     gameboard.board.push(new Array(10).fill(0));
@@ -59,6 +60,7 @@ const GameBoard = () => {
   gameboard.receiveAttack = (x, y) => {
     if(gameboard.board[x][y] != 0){
       if(gameboard.board[x][y].ship.hit(gameboard.board[x][y].index)){
+        gameboard.hit.push([x,y]);
         return true;
       }
     }
