@@ -16,6 +16,7 @@ function renderBoard(gameboard, hidden = false){
         if(gameboard.isOccupied(i, j)){ c.classList.add("ship-present"); } 
       }
       if(gameboard.isMissed(i, j)){ c.classList.add("missed-shot"); }
+      if(gameboard.isHit(i, j)){ c.classList.add("hit-shot"); }
       r.appendChild(c);
     })
     b.appendChild(r);

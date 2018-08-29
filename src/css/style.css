@@ -31,3 +31,7 @@
 .missed-shot {
   background-color: yellow;
 }
+
+.hit-shot {
+  background-color: red;
+}
