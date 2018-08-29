@@ -40,10 +40,9 @@ const play = () => {
       
     }
     else{
-
       player2.playRound();
-
     }
+
     if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { playing = false; }
   }
 }
@@ -53,7 +52,6 @@ function setListeners(){
   let cells = opponent.getElementsByClassName('cell');
   for(let i = 0; i < cells.length; i++){
     cells[i].onclick = () => {
-      console.log("click");
       player2.gameboard.receiveAttack(cells[i].getAttribute("x"), cells[i].getAttribute("y"));
       update();
     }
