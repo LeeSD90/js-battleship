@@ -18,6 +18,10 @@ const GameBoard = () => {
     return isArrayInArray(gameboard.missed, [x.toString(), y.toString()]);
   }
 
+  gameboard.isHit = (x, y) => {
+    return isArrayInArray(gameboard.hit, [x.toString(), y.toString()]);
+  }
+
   gameboard.setRandomShips = () => {
     let threePlaced = false;
     for(let i = 2; i < 6; i++){
