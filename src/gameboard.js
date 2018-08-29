@@ -9,6 +9,14 @@ const GameBoard = () => {
     gameboard.board.push(new Array(10).fill(0));
   }
 
+  gameboard.isOccupied = (x, y) => {
+    if (gameboard.board[x][y] != 0) { return true; } else return false;
+  }
+
+  gameboard.isMissed = (x, y) => {
+    return isArrayInArray(gameboard.missed, [x.toString(), y.toString()]);
+  }
+
   gameboard.setRandomShips = () => {
     let threePlaced = false;
     for(let i = 2; i < 6; i++){
@@ -35,7 +43,7 @@ const GameBoard = () => {
 
     try{
       for(i = 0; i < ship.length; i++){
-        if(isOccupied(countRow, countCol)){ throw "Cell is occupied!" };
+        if(gameboard.isOccupied(countRow, countCol)){ throw "Cell is occupied!" };
         o === "h" ? countCol++ : countRow++;
       }
       for(i = 0; i < ship.length; i++){
@@ -72,42 +80,16 @@ const GameBoard = () => {
     })
     return result;
   }
-
-  gameboard.render = (hidden = true) => {
-    let container = document.createElement('div');
-    let b = document.createElement('div');
-    b.className = "board";
-
-    gameboard.board.forEach((row, i) => {
-      let r = document.createElement('div');
-      r.className = "row";
-      row.forEach((col, j) => {
-        let c = document.createElement('div');
-        c.className = "col";
-
-        if(hidden){
-          if(isMissed(i, j)){ c.classList.add("missed-shot"); }
-         }
-        else { 
-          if(isOccupied(i, j)){ c.classList.add("ship-present"); } 
-        }
-
-        r.appendChild(c);
-      })
-      b.appendChild(r);
-    })
-    container.appendChild(b);
-    return container.innerHTML;
+  
+  function isArrayInArray(arr, item){
+    let item_as_string = JSON.stringify(item);
+  
+    let contains = arr.some(function(ele){
+      return JSON.stringify(ele) === item_as_string;
+    });
+    return contains;
   }
-
-  function isMissed(x, y){
-    return gameboard.missed.includes([x,y]);
-  }
-
-  function isOccupied(x, y){
-    if (gameboard.board[x][y] != 0) { return true; } else return false;
-  }
-
+  
   return gameboard;
 }
 
