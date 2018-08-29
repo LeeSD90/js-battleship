@@ -52,7 +52,7 @@ const GameBoard = () => {
         o === "h" ? countCol++ : countRow++;
       }
       for(i = 0; i < ship.length; i++){
-        gameboard.board[row][col] = { ship: ship, index: i };
+        gameboard.board[row][col] = { ship: ship, index: i+1 };
         o === "h" ? col++ : row++;
       }
     }
@@ -62,7 +62,9 @@ const GameBoard = () => {
   }
 
   gameboard.receiveAttack = (x, y) => {
+    console.log(gameboard.board[x][y]);
     if(gameboard.board[x][y] != 0){
+      console.log(x, y, gameboard.board[x][y].ship, gameboard.board[x][y].index);
       if(gameboard.board[x][y].ship.hit(gameboard.board[x][y].index)){
         gameboard.hit.push([x,y]);
         return true;
