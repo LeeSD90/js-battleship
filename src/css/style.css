@@ -16,7 +16,7 @@
   border: 1px solid black;
 }
 
-.col:hover {
+.cell:hover {
   background-color: rgb(171, 171, 231);
 }
 
