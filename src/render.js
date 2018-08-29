@@ -2,6 +2,7 @@ function renderBoard(gameboard, hidden = false){
   let container = document.createElement('div');
   let b = document.createElement('div');
   b.className = "board";
+  if(hidden) { b.id = "opponent"; }
 
   gameboard.board.forEach((row, i) => {
     let r = document.createElement('div');
@@ -24,8 +25,7 @@ function renderBoard(gameboard, hidden = false){
 }
 
 const render = (player1, player2) => {
-  let game = renderBoard(player1.gameboard) + renderBoard(player2.gameboard, true);
-  return game;
+  document.getElementById("js-battleship").innerHTML = renderBoard(player1.gameboard) + renderBoard(player2.gameboard, true);
 }
 
 export default render;
