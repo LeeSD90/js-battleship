@@ -43,7 +43,7 @@ const play = () => {
       player2.playRound();
     }
 
-    if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { playing = false; }
+    if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { console.log("done");playing = false; }
   }
 }
 
