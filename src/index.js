@@ -7,6 +7,7 @@ const Gameboard = require('./gameboard');
 
 let player1;
 let player2;
+let playing = false;
 
 const newGame = () => {
   player1 = Player("p1");
@@ -29,12 +30,15 @@ const newGame = () => {
 const update = () => {
   render(player1, player2);
   setListeners();
+  if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { 
+    playing = false;
+    clearListeners(); 
+  }
 }
 
 const play = () => {
   let playersTurn = true;
-  let playing = false;
-
+  
   while(playing){
     if(playersTurn){
       
@@ -42,9 +46,14 @@ const play = () => {
     else{
       player2.playRound();
     }
-
-    if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { console.log("done");playing = false; }
   }
+}
+
+function clearListeners(){
+  let board = document.getElementById("js-battleship");
+  let boardClone = board.cloneNode(true);
+
+  board.parentNode.replaceChild(boardClone, board);
 }
 
 function setListeners(){
