@@ -7,7 +7,6 @@ const Gameboard = require('./gameboard');
 
 let player1;
 let player2;
-let playing = false;
 
 const newGame = () => {
   player1 = Player("p1");
@@ -32,21 +31,13 @@ const update = () => {
   setListeners();
   if(player1.gameboard.allShipsSunk() || player2.gameboard.allShipsSunk()) { 
     playing = false;
-    clearListeners(); 
+    clearListeners();
   }
 }
 
 const play = () => {
-  let playersTurn = true;
-  
-  while(playing){
-    if(playersTurn){
-      
-    }
-    else{
-      player2.playRound();
-    }
-  }
+  clearListeners();
+  update();
 }
 
 function clearListeners(){
@@ -62,6 +53,7 @@ function setListeners(){
   for(let i = 0; i < cells.length; i++){
     cells[i].onclick = () => {
       player2.gameboard.receiveAttack(cells[i].getAttribute("x"), cells[i].getAttribute("y"));
+      player2.playRound();
       update();
     }
   }
