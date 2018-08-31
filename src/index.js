@@ -52,9 +52,13 @@ function setListeners(){
   let cells = opponent.getElementsByClassName('cell');
   for(let i = 0; i < cells.length; i++){
     cells[i].onclick = () => {
-      player2.gameboard.receiveAttack(cells[i].getAttribute("x"), cells[i].getAttribute("y"));
-      player2.playRound();
-      update();
+      let x = cells[i].getAttribute("x");
+      let y = cells[i].getAttribute("y");
+      if(!player2.gameboard.isMissed(x,y) && !player2.gameboard.isHit(x,y)){
+        player2.gameboard.receiveAttack(x, y);
+        player2.playRound();
+        update();
+      }
     }
   }
 }
