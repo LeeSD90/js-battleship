@@ -3,7 +3,7 @@ function renderBoard(gameboard, hidden = false){
   let b = document.createElement('div');
   b.className = "board";
   if(hidden) { b.id = "opponent"; }
-
+ 
   gameboard.board.forEach((row, i) => {
     let r = document.createElement('div');
     r.className = "row";

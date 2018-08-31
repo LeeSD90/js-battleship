@@ -11,6 +11,15 @@ const Player = (n = "Player") => {
   }
 
   player.playRound = () => {
+    let x = Math.floor(Math.random() * 10);
+    let y = Math.floor(Math.random() * 10);
+
+    while(player.opposition.gameboard.isMissed(x, y)){
+      x = Math.floor(Math.random() * 10);
+      y = Math.floor(Math.random() * 10);
+    }
+
+    player.opposition.gameboard.receiveAttack(x, y);
     return true;
   }
 
