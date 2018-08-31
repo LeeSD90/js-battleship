@@ -62,6 +62,8 @@ const GameBoard = () => {
   }
 
   gameboard.receiveAttack = (x, y) => {
+    x = x.toString();
+    y = y.toString();
     if(gameboard.board[x][y] != 0){
       if(gameboard.board[x][y].ship.hit(gameboard.board[x][y].index+1)){
         gameboard.hit.push([x,y]);
