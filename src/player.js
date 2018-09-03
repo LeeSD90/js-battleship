@@ -19,8 +19,7 @@ const Player = (n = "Player") => {
       y = Math.floor(Math.random() * 10);
     }
 
-    player.opposition.gameboard.receiveAttack(x, y);
-    return true;
+    return player.opposition.gameboard.receiveAttack(x, y);
   }
 
   return player;

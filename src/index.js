@@ -1,6 +1,5 @@
 //TODO ship placement
 //TODO improve ai
-//TODO ship sunk notifcation
 
 import './css/style.css';
 
@@ -56,12 +55,17 @@ function setListeners(){
       let x = cells[i].getAttribute("x");
       let y = cells[i].getAttribute("y");
       if(!player2.gameboard.isMissed(x,y) && !player2.gameboard.isHit(x,y)){
-        player2.gameboard.receiveAttack(x, y);
-        player2.playRound();
+        if(player2.gameboard.receiveAttack(x, y)){ message("You sunk a size " + player2.gameboard.board[x][y].ship.length + " ship!") }
+        if(player2.playRound()){ message("Your ship was sunk! :(") }
         update();
       }
     }
   }
+}
+
+function message(string){
+  let message = document.getElementById("message");
+  message.innerHTML += string + "<br/>";
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -67,7 +67,8 @@ const GameBoard = () => {
     if(gameboard.board[x][y] != 0){
       if(gameboard.board[x][y].ship.hit(gameboard.board[x][y].index+1)){
         gameboard.hit.push([x,y]);
-        return true;
+        if(gameboard.board[x][y].ship.isSunk()){ return true; }
+        else return false;
       }
     }
     else{
