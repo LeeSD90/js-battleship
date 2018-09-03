@@ -13,6 +13,13 @@ h1 {
   justify-content: center;
 }
 
+#message{
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
 .row {
   display: inline-flex;
   width: 500px;
