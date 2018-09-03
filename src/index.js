@@ -1,3 +1,7 @@
+//TODO ship placement
+//TODO improve ai
+//TODO ship sunk notifcation
+
 import './css/style.css';
 
 import render from './render';
@@ -23,6 +27,8 @@ const newGame = () => {
   player1.setOpposition(player2);
   player2.setOpposition(player1);
 
+  clearListeners();
+
   update();
 }
 
@@ -33,11 +39,6 @@ const update = () => {
     playing = false;
     clearListeners();
   }
-}
-
-const play = () => {
-  clearListeners();
-  update();
 }
 
 function clearListeners(){
@@ -65,5 +66,4 @@ function setListeners(){
 
 document.addEventListener('DOMContentLoaded', () => {
   newGame();
-  play();
 });
