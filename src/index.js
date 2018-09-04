@@ -1,5 +1,6 @@
 //TODO ship placement
 //TODO improve ai
+//TODO change message to be returned on attempted shots based on their outcome?
 
 import './css/style.css';
 
